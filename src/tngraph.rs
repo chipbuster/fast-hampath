@@ -156,6 +156,22 @@ impl<'a> TournamentGraph<'a> {
         out
     }
 
+    pub fn validate_path(&self, path: &[NodeID]) -> bool {
+        if path.len() != self.nodes.len() {
+            return false;
+        }
+        let mut cur_id = path[0];
+        for next_id in &path[1..] {
+            if self.get_node(cur_id).neighbor_ids().contains(next_id) {
+                cur_id = *next_id;
+            }
+            else {
+                return false;
+            }
+        }
+        true
+    }
+
     fn is_valid_tournament_graph(&self) -> bool {
         // Check for no duplicate edges
         for i in 0..self.nodes.len() {

@@ -13,7 +13,6 @@ pub struct HampathBuilder<'a> {
 }
 
 impl<'a> HampathBuilder<'a> {
-
     pub fn new(n: usize, edges: Vec<(NodeID, NodeID)>, arena: &'a Arena<Node<'a>>) -> Self {
         let graph = TournamentGraph::new(n, edges, arena).expect("Invalid edge array in construction!");
         Self {
@@ -36,12 +35,8 @@ impl<'a> HampathBuilder<'a> {
 
     pub fn solution_pair(mut self) -> (Vec<NodeID>, TournamentGraph<'a>) {
         let path = self.solve_path();
-        let graph = self.into_graph();
+        let graph = self.graph;
         (path, graph)
-    }
-
-    pub fn into_graph(self) -> TournamentGraph<'a> {
-        self.graph
     }
 
     pub fn solve_path(&mut self) -> Vec<NodeID> {
@@ -51,6 +46,8 @@ impl<'a> HampathBuilder<'a> {
         }
         self.cur_path.iter().collect::<Vec<_>>()
     }
+
+
 
     /// Given the neighbors of the node to be inserted and the path so far,
     /// returns the NodeID that the new node should be inserted after

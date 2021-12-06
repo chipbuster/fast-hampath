@@ -4,10 +4,9 @@ use typed_arena::Arena;
 fn main() {
     for _ in 0..100{
         let arena = Arena::new();
-        let mut builder = HampathBuilder::new_random(5, &arena);
-        let path = builder.solve_path();
-        let graph = builder.into_graph();
-
+        let builder = HampathBuilder::new_random(5, &arena);
+        let (path, graph) = builder.solution_pair();
+        
         println!("Path is {:?}", path);
         println!("{}", graph);
     }
