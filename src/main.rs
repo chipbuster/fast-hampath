@@ -1,4 +1,4 @@
-use fast_hampath::fastpath_naive::HampathBuilder;
+use fast_hampath::fastpath::HampathBuilder;
 use typed_arena::Arena;
 
 fn main() {
