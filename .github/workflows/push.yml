@@ -44,20 +44,4 @@ jobs:
           rust-version: stable
       - name: Build | Test
         run: cargo test
-  bench:
-    name: Benchmark
-    runs-on: [self-hosted, benchmark]
-    steps: 
-      - name: Setup | Checkout
-        uses: actions/checkout@v2
-#      - name: Setup | Rust
-#        uses: ATiltedTree/setup-rust@v1
-#        with:
-#          rust-version: stable
-      - name: Enable Cargo
-        run: |
-          echo ~/.cargo/bin >> $GITHUB_PATH
-      - name: Check Path
-        run: echo "$PATH"
-      - name: Bench
-        run: echo $PATH && cargo bench
+
