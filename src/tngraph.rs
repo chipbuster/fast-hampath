@@ -116,7 +116,7 @@ impl<'a> TournamentGraph<'a> {
             unsafe{ nodes[src].insert_edge_to(sinkref); }
         }
 
-        std::thread::sleep(std::time::Duration::from_secs(1));
+        std::thread::sleep(std::time::Duration::from_millis(10));
 
         Self { nodes }
     }
