@@ -50,9 +50,9 @@ jobs:
     steps: 
       - name: Setup | Checkout
         uses: actions/checkout@v2
-      - name: Setup | Rust
-        uses: ATiltedTree/setup-rust@v1
-        with:
-          rust-version: stable
+#      - name: Setup | Rust
+#        uses: ATiltedTree/setup-rust@v1
+#        with:
+#          rust-version: stable
       - name: Bench
         run: cargo bench
