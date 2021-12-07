@@ -44,3 +44,15 @@ jobs:
           rust-version: stable
       - name: Build | Test
         run: cargo test
+  bench:
+    name: Benchmark
+    runs-on: [self-hosted, benchmark]
+    steps: 
+      - name: Setup | Checkout
+        uses: actions/checkout@v2
+      - name: Setup | Rust
+        uses: ATiltedTree/setup-rust@v1
+        with:
+          rust-version: stable
+      - name: Bench
+        run: cargo bench
