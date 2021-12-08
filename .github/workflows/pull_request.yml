@@ -12,8 +12,6 @@ jobs:
         with: 
           rust-version: stable
           components: clippy
-      - name: "Check PATH"
-        run: echo "$PATH"
       - uses: actions/checkout@v2
       - name: Check Against trunk
         uses: boa-dev/criterion-compare-action@v2.0.0
