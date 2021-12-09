@@ -16,6 +16,6 @@ jobs:
           components: clippy
       - uses: actions/checkout@v2
       - name: Check Against trunk
-        uses: boa-dev/criterion-compare-action@v2.0.0
+        uses: chipbuster/criterion-compare-action@v2.0.0
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
