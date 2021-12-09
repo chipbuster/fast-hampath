@@ -19,3 +19,4 @@ jobs:
         uses: chipbuster/criterion-compare-action@v2.0.0
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
+          branchName: trunk
