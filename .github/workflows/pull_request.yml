@@ -7,8 +7,6 @@ jobs:
     name: Criterion Compare PRs
     runs-on: [self-hosted, benchmark]
     steps:
-      - name: Clean Up Runner
-        uses: AutoModality/action-clean@v1
       - name: Setup | Rust
         uses: ATiltedTree/setup-rust@v1
         with:
