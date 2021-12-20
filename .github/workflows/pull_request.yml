@@ -18,3 +18,4 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           gitBranchName: trunk
+          workDir: "./subdir"
