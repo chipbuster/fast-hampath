@@ -7,11 +7,12 @@ jobs:
     name: Criterion Compare PRs
     runs-on: [self-hosted, benchmark]
     steps:
-      - name: Setup | Rust
-        uses: ATiltedTree/setup-rust@v1
-        with:
-          rust-version: stable
-          components: clippy
+#      Re-enable in production, assume we have these on test runners for testing
+#      - name: Setup | Rust
+#        uses: ATiltedTree/setup-rust@v1
+#        with:
+#          rust-version: stable
+#          components: clippy
       - uses: actions/checkout@v2
       - name: Check Against trunk
         uses: chipbuster/criterion-compare@devel
