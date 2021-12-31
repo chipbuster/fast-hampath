@@ -17,4 +17,4 @@ jobs:
         uses: chipbuster/criterion-compare@devel
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          gitBranchName: trunk
+#          gitBranchName: trunk
