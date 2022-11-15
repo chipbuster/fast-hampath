@@ -1,5 +1,6 @@
 use criterion::{black_box, criterion_group, criterion_main, Criterion};
-use fast_hampath::fastpath::HampathBuilder;
+use fast_hampath::slowpath::HampathBuilder;
+use fast_hampath::tngraph::TournamentGraph;
 use typed_arena::Arena;
 
 pub fn benchmark_100(c: &mut Criterion) {
@@ -28,7 +29,8 @@ pub fn benchmark_10(c: &mut Criterion) {
 
 fn solve_random_hampath(n: usize) {
     let a = Arena::new();
-    HampathBuilder::new_random(n, &a).solution_pair();
+    let g = TournamentGraph::new_random(n, &a);
+    HampathBuilder::new(&g).solve();
 }
 
 fn sleep_short_time(c: &mut Criterion) {

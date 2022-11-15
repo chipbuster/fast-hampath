@@ -71,6 +71,7 @@ impl<'a> Node<'a> {
     pub fn neighbors(&self) -> Vec<&'a Node<'a>> {
         unsafe { (*self.out_edges.get()).clone() }
     }
+
 }
 
 pub struct TournamentGraph<'a> {
@@ -200,6 +201,10 @@ impl<'a> TournamentGraph<'a> {
         }
 
         true
+    }
+
+    pub fn len(&self) -> usize {
+        self.nodes.len()
     }
 }
 

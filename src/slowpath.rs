@@ -1,20 +1,19 @@
 /*! "Naive" fast Hamiltonian path: do the search breakup, but without intelligent
  * searching for "switching" locations on the interior. */
 
-use crate::tngraph::{TournamentGraph, Node, NodeID};
+use crate::tngraph::{TournamentGraph, NodeID};
 use crate::perm_ll::PLinkedList;
-use typed_arena::Arena;
 
 pub struct HampathBuilder<'a> {
     num_nodes: usize,  // The number of nodes in a completed path
     last_node: usize,  // The last node to appear in the current path
     cur_path: PLinkedList,
-    graph: TournamentGraph<'a>,
+    graph: &'a TournamentGraph<'a>,
 }
 
 impl<'a> HampathBuilder<'a> {
-    pub fn new(n: usize, edges: Vec<(NodeID, NodeID)>, arena: &'a Arena<Node<'a>>) -> Self {
-        let graph = TournamentGraph::new(n, edges, arena).expect("Invalid edge array in construction!");
+    pub fn new(graph: &'a TournamentGraph<'a>) -> Self {
+        let n = graph.len();
         Self {
             num_nodes: n,
             last_node: 0,
@@ -23,20 +22,8 @@ impl<'a> HampathBuilder<'a> {
         }
     }
 
-    pub fn new_random(n: usize, arena: &'a Arena<Node<'a>>) -> Self {
-        let graph = TournamentGraph::new_random(n, arena);
-        Self {
-            num_nodes: n,
-            last_node: 0,
-            cur_path: PLinkedList::new(n, 0),
-            graph,
-        }
-    }
-
-    pub fn solution_pair(mut self) -> (Vec<NodeID>, TournamentGraph<'a>) {
-        let path = self.solve_path();
-        let graph = self.graph;
-        (path, graph)
+    pub fn solve(&mut self) -> Vec<NodeID> {
+        self.solve_path().clone()
     }
 
     pub fn solve_path(&mut self) -> Vec<NodeID> {
@@ -46,8 +33,6 @@ impl<'a> HampathBuilder<'a> {
         }
         self.cur_path.iter().collect::<Vec<_>>()
     }
-
-
 
     /// Given the neighbors of the node to be inserted and the path so far,
     /// returns the NodeID that the new node should be inserted after
